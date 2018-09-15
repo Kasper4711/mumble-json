@@ -1,6 +1,5 @@
 #!/usr/bin/python
 import Ice
-import inspect
 import sys
 
 # The server name
