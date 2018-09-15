@@ -1,21 +1,31 @@
 #!/usr/bin/python
+
+# The server name to display
+SERVER_NAME = "My Server"
+
+# edit this to query another server id
+SERVER_ID = 1
+
+# provide correct location of slice here
+SLICE = '/usr/share/slice/Murmur.ice'
+
+# The port of the ICE connection
+ICE_PORT = 6502
+
+##################################################################################
+# DO NOT EDIT BEYOND THIS LINE !!! 
+##################################################################################
+
 import Ice
 import sys
 
-# The server name
-serverName = "My Server"
-
-# edit this to query another server id
-serverId = 1
-
-# provide correct location of slice here
-Ice.loadSlice( "", ["-I" + Ice.getSliceDir(), '/usr/share/slice/Murmur.ice'])
+Ice.loadSlice( "", ["-I" + Ice.getSliceDir(), SLICE])
 import Murmur
 
 # Init ice
 comm = Ice.initialize()
 # Let Ice know where to go to connect to mumble
-proxy = comm.stringToProxy('Meta -e 1.0:tcp -p 6502')
+proxy = comm.stringToProxy('Meta -e 1.0:tcp -p ' + str(ICE_PORT))
 # Create a dynamic object that allows us to get a programmable interface for Mumble
 meta = Murmur.MetaPrx.checkedCast(proxy)
 
@@ -24,7 +34,7 @@ meta = Murmur.MetaPrx.checkedCast(proxy)
 ##################################################################################
 
 # Get the server instance from the set of servers.
-server = meta.getServer(serverId)
+server = meta.getServer(SERVER_ID)
 
 channelMap = server.getChannels()
 userMap = server.getUsers()
@@ -116,8 +126,8 @@ def printChannel(channel, tab):
 def printServer():
     tab = '\t'
     print '{'
-    print tab + '"id": ' + str(serverId) + ','
-    print '"name": "' + serverName + '",'
+    print tab + '"id": ' + str(SERVER_ID) + ','
+    print '"name": "' + SERVER_NAME + '",'
     print tab + '"root": '
     first = True
     rootId = -1
