@@ -159,8 +159,4 @@ printServer()
 ##################################################################################
 
 if comm:
-    try:
-        comm.destroy()
-    except:
-        traceback.print_exc()
-        status=1
+    comm.destroy()
