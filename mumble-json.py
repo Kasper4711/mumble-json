@@ -4,7 +4,7 @@ import inspect
 import sys
 
 # edit this to query another server id
-serverid = 1
+serverId = 1
 
 # provide correct location of slice here
 Ice.loadSlice( "", ["-I" + Ice.getSliceDir(), '/usr/share/slice/Murmur.ice'])
@@ -22,7 +22,7 @@ meta = Murmur.MetaPrx.checkedCast(proxy)
 ##################################################################################
 
 # Get the server instance from the set of servers.
-server = meta.getServer(serverid)
+server = meta.getServer(serverId)
 
 channelMap = server.getChannels()
 userMap = server.getUsers()
@@ -114,8 +114,8 @@ def printChannel(channel, tab):
 def printServer():
     tab = '\t'
     print '{'
-    print tab + '"id": ' + str(serverid) + ','
-    print '"name": "' + server.getConf('registerName') + '"'
+    print tab + '"id": ' + str(serverId) + ','
+    print '"name": "' + server.getConf('registerName') + '",'
     print tab + '"root": '
     first = True
     rootId = -1
