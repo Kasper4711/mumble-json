@@ -3,6 +3,9 @@ import Ice
 import inspect
 import sys
 
+# The server name
+serverName = "My Server"
+
 # edit this to query another server id
 serverId = 1
 
@@ -115,7 +118,7 @@ def printServer():
     tab = '\t'
     print '{'
     print tab + '"id": ' + str(serverId) + ','
-    print '"name": "' + server.getConf('registerName') + '",'
+    print '"name": "' + serverName + '",'
     print tab + '"root": '
     first = True
     rootId = -1
