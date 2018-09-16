@@ -61,6 +61,8 @@ for key, user in userMap.iteritems():
 # Procedure definitions
 ##################################################################################
 
+# Get the links of a channel as a comma separated string.
+# channel: the channel to get links for
 def getChannelLinks(channel):
     links=''
     for link in channel.links:
@@ -69,6 +71,9 @@ def getChannelLinks(channel):
         links = links + str(link)
     return links
 
+# Print User information.
+# user: the user to print information for
+# tab: the preceeding tab string
 def printUser(user, tab):
     print tab + '"channel": ' + str(user.channel) + ','
     print tab + '"deaf": ' + str(user.deaf).lower() + ','
@@ -80,6 +85,9 @@ def printUser(user, tab):
     print tab + '"suppress": ' + str(user.suppress).lower() + ','
     print tab + '"userid": ' + str(user.userid)
 
+# Print the users that are in a certain channel.
+# channel: the channel to print users for
+# tab: the preceeding tab string
 def printChannelUsers(channel, tab):
     print tab + '"users": ['
     first = True
@@ -95,6 +103,10 @@ def printChannelUsers(channel, tab):
             print tab + '}'
     print tab + '],'
 
+# Print the children of a channel.
+# A child is channel, that has the given channel.id as parent.
+# channel: the channel to print children for
+# tab: the preceeding tab string
 def printChannelChildren(channel, tab):
     print tab + '"channels": ['
     first = True
@@ -110,6 +122,9 @@ def printChannelChildren(channel, tab):
             print tab +  '}'
     print tab + ']'
 
+# Print a channel information.
+# channel: the channel to print information for
+# tab: the preceeding tab string
 def printChannel(channel, tab):
     print tab + '"name": "' + channel.name + '",'
     print tab + '"id": ' + str(channel.id) + ','
@@ -123,6 +138,8 @@ def printChannel(channel, tab):
     printChannelUsers(channel, tab )
     printChannelChildren(channel, tab )
 
+# Print information of the whole server.
+# Server information includes channels and all users.
 def printServer():
     tab = '\t'
     print '{'
