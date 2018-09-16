@@ -136,9 +136,9 @@ def printServer():
         for channel in channelChildrenMap[rootId]:
             if first == True:
                 print tab + '{'
+                first = False
             else:
                 print tab + ',{'
-                first = False
             printChannel(channel, tab + '\t')
             print tab + '}'
     else:
