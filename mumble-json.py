@@ -144,7 +144,7 @@ def printServer():
     tab = '\t'
     print '{'
     print tab + '"id": ' + str(SERVER_ID) + ','
-    print '"name": "' + SERVER_NAME + '",'
+    print tab + '"name": "' + SERVER_NAME + '",'
     print tab + '"root": '
     first = True
     rootId = -1
