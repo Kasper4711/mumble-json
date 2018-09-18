@@ -83,7 +83,10 @@ def printUser(user, tab):
     print tab + '"selfMute": ' + str(user.selfMute).lower() + ','
     print tab + '"session": ' + str(user.session) + ','
     print tab + '"suppress": ' + str(user.suppress).lower() + ','
-    print tab + '"userid": ' + str(user.userid)
+    print tab + '"userid": ' + str(user.userid) + ','
+    print tab + '"recording": ' + str(user.recording).lower() + ','
+    print tab + '"prioritySpeaker": ' + str(user.prioritySpeaker).lower() + ','
+    print tab + '"comment": "' + user.comment + '"'
 
 # Print the users that are in a certain channel.
 # channel: the channel to print users for
