@@ -94,11 +94,11 @@ def printChannelUsers(channel, tab):
 
     if channel.id in usersInChannelMap:
         for user in usersInChannelMap[channel.id]:
-            if first == False:
-                print tab + ',{'
-            else:
+            if first:
                 print tab + '{'
                 first = False
+            else:
+                print tab + ',{'
             printUser(user, tab + '\t')
             print tab + '}'
     print tab + '],'
@@ -113,11 +113,11 @@ def printChannelChildren(channel, tab):
 
     if channel.id in channelChildrenMap:
         for child in channelChildrenMap[channel.id]:
-            if first == False:
-                print tab + ',{'
-            else:
+            if first:
                 print tab + '{'
                 first = False
+            else:
+                print tab + ',{'
             printChannel(child, tab + '\t')
             print tab +  '}'
     print tab + ']'
@@ -151,7 +151,7 @@ def printServer():
 
     if rootId in channelChildrenMap:
         for channel in channelChildrenMap[rootId]:
-            if first == True:
+            if first:
                 print tab + '{'
                 first = False
             else:
