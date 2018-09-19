@@ -61,6 +61,11 @@ for key, user in userMap.iteritems():
 # Procedure definitions
 ##################################################################################
 
+# Sanitize a String by escapting double quotes and newline characters.
+# s: the String to sanitize
+def sanitize(s):
+    return s.replace('"', '\\"').replace('\n', '\\n')
+
 # Get the links of a channel as a comma separated string.
 # channel: the channel to get links for
 def getChannelLinks(channel):
@@ -78,7 +83,7 @@ def printUser(user, tab):
     print tab + '"channel": ' + str(user.channel) + ','
     print tab + '"deaf": ' + str(user.deaf).lower() + ','
     print tab + '"mute": ' + str(user.mute).lower() + ','
-    print tab + '"name": "' + user.name + '",'
+    print tab + '"name": "' + sanitize(user.name) + '",'
     print tab + '"selfDeaf": ' + str(user.selfDeaf).lower() + ','
     print tab + '"selfMute": ' + str(user.selfMute).lower() + ','
     print tab + '"session": ' + str(user.session) + ','
@@ -86,7 +91,7 @@ def printUser(user, tab):
     print tab + '"userid": ' + str(user.userid) + ','
     print tab + '"recording": ' + str(user.recording).lower() + ','
     print tab + '"prioritySpeaker": ' + str(user.prioritySpeaker).lower() + ','
-    print tab + '"comment": "' + user.comment + '"'
+    print tab + '"comment": "' + sanitize(user.comment) + '"'
 
 # Print the users that are in a certain channel.
 # channel: the channel to print users for
@@ -129,10 +134,10 @@ def printChannelChildren(channel, tab):
 # channel: the channel to print information for
 # tab: the preceeding tab string
 def printChannel(channel, tab):
-    print tab + '"name": "' + channel.name + '",'
+    print tab + '"name": "' + sanitize(channel.name) + '",'
     print tab + '"id": ' + str(channel.id) + ','
-    #print tab + '"description": "' + channel.description + '",'
-    print tab + '"description": "",'
+    print tab + '"description": "' + sanitize(channel.description) + '",'
+    #print tab + '"description": "",'
     print tab + '"links": [' + getChannelLinks(channel) + '],'
     print tab + '"parent": ' + str(channel.parent) + ','
     print tab + '"position": ' + str(channel.position) + ','
